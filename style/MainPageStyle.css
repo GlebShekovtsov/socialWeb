@@ -1,0 +1,136 @@
+* {
+    background-color: #f0f0f0;
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 0.7fr 1.3fr;
+    grid-template-rows: 0.28fr 2.4fr 0.3fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "menu menu menu"
+        "mainInfo mainInfo loginContent"
+        "footer footer footer";
+        background-color: #f0f0f0;
+}
+
+.menu {
+    display: grid;
+    grid-area: menu;
+    grid-template-columns: 0.3fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: 
+    "left right";
+}
+.left {
+    grid-area:left;
+}
+.right {
+    grid-area:right;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.mainInfo {
+    grid-area: mainInfo;
+}
+
+.loginContent {
+    display: grid;
+    grid-template-columns: 0.3fr 2.4fr 0.3fr;
+    grid-template-rows: 0.2fr 0.8fr 1fr 2.4fr 0.6fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . ."
+        ". . ."
+        ". loginBlock ."
+        ". regBlock ."
+        ". aboutInfo .";
+    grid-area: loginContent;
+}
+
+.aboutInfo {
+    grid-area: aboutInfo;
+}
+
+.regBlock {
+    display: grid;
+    grid-template-columns: 0.3fr 2.5fr 0.2fr;
+    grid-template-rows: 0.8fr 1.6fr 0.6fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". welcomeLabel ."
+        ". regInfoBlock ."
+        ". welcomeFotter .";
+    grid-area: regBlock;
+}
+
+.welcomeLabel {
+    grid-area: welcomeLabel;
+}
+
+.welcomeFotter {
+    grid-area: welcomeFotter;
+}
+
+.regInfoBlock {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.6fr 1.4fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "logininput"
+        ".";
+    grid-area: regInfoBlock;
+}
+
+.logininput {
+    grid-area: logininput;
+}
+
+.loginBlock {
+    display: grid;
+    grid-template-columns: 0.3fr 2.5fr 0.2fr;
+    grid-template-rows: 0.5fr 1.8fr 0.7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . ."
+        ". loginLabels ."
+        ". loginButton .";
+    grid-area: loginBlock;
+}
+
+.loginLabels {
+    grid-area: loginLabels;
+}
+
+.loginButton {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "loginnerbutton .";
+    grid-area: loginButton;
+}
+
+.loginnerbutton {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . ."
+        ". . ."
+        ". . .";
+    grid-area: loginnerbutton;
+}

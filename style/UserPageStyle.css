@@ -1,0 +1,172 @@
+.container {  display: grid;
+    grid-template-columns: 0.1fr 0.7fr 3.2fr 0.1fr;
+    grid-template-rows: 0.2fr 2.6fr 0.2fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". menu menu ."
+      ". leftMenu mainPage ."
+      ". footer footer .";
+  }
+  
+  .menu { grid-area: menu; }
+  
+  .leftMenu { grid-area: leftMenu; }
+  
+  .mainPage {  display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    grid-template-rows: 1.2fr 0.8fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "userAvatar userList"
+      "friendList gallery";
+    grid-area: mainPage;
+  }
+  
+  .userAvatar {  display: grid;
+    grid-template-columns: 0.4fr 2.3fr 0.3fr;
+    grid-template-rows: 0.2fr 2.3fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      ". avatar ."
+      ". actions .";
+    grid-area: userAvatar;
+  }
+  
+  .avatar {  display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: 0.4fr 2.3fr 0.3fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      ". avatarplace ."
+      ". . .";
+    grid-area: avatar;
+  }
+  
+  .avatarplace { grid-area: avatarplace; }
+  
+  .actions {  display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". actionButt ."
+      ". messageButton .";
+    grid-area: actions;
+  }
+  
+  .actionButt { grid-area: actionButt; }
+  
+  .messageButton { grid-area: messageButton; }
+  
+  .friendList {  display: grid;
+    grid-template-columns: 0.4fr 2.3fr 0.3fr;
+    grid-template-rows: 0.4fr 2.1fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". FriendLabel ."
+      ". FriendListOut ."
+      ". AllFriendsButton .";
+    grid-area: friendList;
+  }
+  
+  .FriendLabel { grid-area: FriendLabel; }
+  
+  .FriendListOut { grid-area: FriendListOut; }
+  
+  .AllFriendsButton { grid-area: AllFriendsButton; }
+  
+  .userList {  display: grid;
+    grid-template-columns: 0.1fr 2.7fr;
+    grid-template-rows: 0.5fr 2fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". userName"
+      ". userInfo"
+      ". userRedaction";
+    grid-area: userList;
+  }
+  
+  .userName {  display: grid;
+    grid-template-columns: 2fr 0.2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "userFullName ."
+      "userStatus .";
+    grid-area: userName;
+  }
+  
+  .userStatus { grid-area: userStatus; }
+  
+  .userFullName { grid-area: userFullName; }
+  
+  .userInfo { grid-area: userInfo; }
+  
+  .userRedaction {  display: grid;
+    grid-template-columns: 0.9fr 1.3fr 0.8fr;
+    grid-template-rows: 0.8fr 1.5fr 0.7fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . ."
+      ". redButton ."
+      ". . .";
+    grid-area: userRedaction;
+  }
+  
+  .redButton { grid-area: redButton; }
+  
+  .gallery {  display: grid;
+    grid-template-columns: 0.5fr 2.2fr 0.3fr;
+    grid-template-rows: 0.4fr 2.1fr 0.5fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". galleryLabel ."
+      ". PhotoOut ."
+      ". . .";
+    grid-area: gallery;
+  }
+  
+  .PhotoOut { grid-area: PhotoOut; }
+  
+  .galleryLabel { grid-area: galleryLabel; }
+  
+  .footer { grid-area: footer; }
+  
+  
+  html, body , .container {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* For presentation only, no need to copy the code below */
+  
+  .container * {
+    border: 1px solid red;
+    position: relative;
+  }
+  
+  .container *:after {
+    content:attr(class);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
