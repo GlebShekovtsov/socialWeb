@@ -1,3 +1,6 @@
+<?
+$conn = mysqli_connect("localhost", "root", "root", "socialwebdb");
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -16,18 +19,74 @@
   <div class="container">
     <div class="menu">
       <div class="left">
-        <h1>Тест</h1>
+        <h1>DырNet</h1>
       </div>
       <div class="right"></div>
     </div>
-    <div class="mainInfo"></div>
+    <div class="mainInfo">
+      <div class="infoblock">
+        <div class="infolabel">
+          <h2>Лучшая социальная сеть на территории заповедника "ДырГора"</h2>
+        </div>
+        <div class="info">
+          <div class="picturecontainer">
+            <figure class="picturefigure">
+              <img src="img/dirmountain.jpg" class="picture1">
+              <figcaption class="picture1caption">
+                Наша штаб-квартира
+              </figcaption>
+            </figure>
+
+            <p>
+              На территории ДырГоры живут самые лучшие и прекрасные люди, многие хотят с ними общаться, и этот сайт поможет вам в этом.
+              Довакин ДырГоры Дмитрий Иванов всегда рад пообщаться с вами на различные темы, начиная от ведьмака заканчивая скайримом и конечно же пубгом.
+            </p>
+          </div>
+        </div>
+        <div class="mainfooter">
+
+        </div>
+      </div>
+    </div>
     <div class="loginContent">
       <div class="aboutInfo"></div>
       <div class="regBlock">
-        <div class="welcomeLabel"></div>
-        <div class="welcomeFotter"></div>
+        <div class="welcomeLabel">
+          <h1>Впервые у нас? Зарегистрируйтесь</h1>
+        </div>
+
         <div class="regInfoBlock">
-          <div class="logininput"></div>
+          <div class="logininput">
+            <h3>Быстрая регистрация</h3>
+          </div>
+          <div class="fastreginfo">
+            <form method="POST" class="regform">
+              <label for="">Введите логин:</label>
+              <input type="text" class="input" name="loginreg" required>
+              <label for="">Введите пароль:</label>
+              <input type="text" class="input" name="passwordreg">
+              <input type="submit"  name="submitreg" class="btn" value="Зарегистрироваться" required>
+            </form>
+            <? 
+          if(isset($_POST['submitreg'])){
+            $login = $_POST['loginreg'];
+            $password = password_hash($_POST['passwordreg'], PASSWORD_DEFAULT);
+            $userInsertion = "INSERT INTO `user` (`login`, `password`) VALUES ('$login', '$password')";
+            if ($conn->query($userInsertion)){
+              echo "<p>" . "Регистрация прошла успешно" . "</p>";
+            }
+            else{
+              echo "<p>" . "Ошибка:" . $conn->error . "</p>";
+            }
+          }
+          ?>
+          </div>
+        </div>
+        <div class="welcomeFotter">
+          <span class="welcomespan">
+            Регистрируясь у нас вы подтверждаете, что продаете свою душу Дмитрию Иванову.
+            ОАО "ДырГора" со всем уважением к вам.
+          </span>
         </div>
       </div>
       <div class="loginBlock">
@@ -35,19 +94,19 @@
 
           <form method="POST" class="loginform">
             <label for="">Введите логин:</label>
-            <input type="text" class="input" name="login">
+            <input type="text" class="input" name="login" required>
             <label for="">Введите пароль:</label>
-            <input type="text" class="input" name="password">
-            <input type="submit" class="btn" value="Войти">
+            <input type="text" class="input" name="password" required>
+            <input type="submit" name="submitlogin" class="btn" value="Войти">
+          </form>
+         
         </div>
-        
+
       </div>
     </div>
-    <div class="footer">
-      <span>
-        прикольные приколы 10+
-      </span>
-    </div>
+ 
+
+
   </div>
 </body>
 
