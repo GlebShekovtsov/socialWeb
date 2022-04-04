@@ -1,8 +1,11 @@
 <?php
 session_start();
 $conn = mysqli_connect("localhost", "root", "root", "socialwebdb");
-$userid = $_SESSION['userid'];
-$userInfoSelect = "SELECT * FROM `page` WHERE userId = '$userid'";
+if(isset($_POST['checkpage'])){
+    $pageid = $_POST['id'];
+    $friendid = $_POST['userId'];
+}
+$userInfoSelect = "SELECT * FROM `page` WHERE id = '$pageid'";
 $userInfoSelectResult = mysqli_query($conn, $userInfoSelect);
 $userInfoFetchAssoc = mysqli_fetch_assoc($userInfoSelectResult);
 
@@ -58,28 +61,7 @@ $userInfoFetchAssoc = mysqli_fetch_assoc($userInfoSelectResult);
         <div class="FriendLabel">
           <h2>Ваши друзья: </h2>
         </div>
-        <div class="FriendListOut">
-          <?php
-          $FriendSelect = "SELECT * FROM `friend` WHERE idUser = '$userid'";
-          $FriendSelectResult = mysqli_query($conn, $FriendSelect);
-          $FriendFetchAssoc = mysqli_fetch_assoc($FriendSelectResult);
-          $friendid = $FriendFetchAssoc['idFriend'];
-          $FriendPageSelect = "SELECT * FROM `page` WHERE id ='$friendid'";
-          $FriendPageSelectResult = mysqli_query($conn, $FriendPageSelect);
-          foreach ($FriendPageSelectResult as $friendRow) {
-            echo "<div class='friendrow'>";
-            echo "<p>" . $friendRow['fullName'] . "<a href='userpage.php?friendid=" . $friendRow['id'] . "'>" . " [Удалить]" . "</a>" . "</p>";
-            echo "</div>";
-          }
-          ?>
-          <?php
-            if(isset($_GET['friendid'])){
-              $friendDeleteId = $_GET['friendid'];
-              $friendDelete = "DELETE FROM `friend` WHERE idFriend = '$friendDeleteId'";
-              $conn->query($friendDelete);
-            }
-          ?>
-        </div>
+        <div class="FriendListOut"></div>
 
       </div>
       <div class="userList">
@@ -105,9 +87,7 @@ $userInfoFetchAssoc = mysqli_fetch_assoc($userInfoSelectResult);
 
         </div>
         <div class="userRedaction">
-          <form method="POST" class="redform" action="userred.php">
-            <input type="submit" class="btn" name="redact" value="Редактировать">
-          </form>
+
 
         </div>
       </div>
@@ -117,7 +97,7 @@ $userInfoFetchAssoc = mysqli_fetch_assoc($userInfoSelectResult);
         </div>
         <div class="PhotoOut">
           <?php
-          $gallerySelection = "SELECT * FROM `gallery` WHERE userId = '$userid' ORDER BY rand() LIMIT 4";
+          $gallerySelection = "SELECT * FROM `gallery` WHERE userId = '$friendid' ORDER BY rand() LIMIT 4";
           $gallerySelectionResult = mysqli_query($conn, $gallerySelection);
           foreach ($gallerySelectionResult as $galleryRow) {
             echo "
@@ -129,26 +109,7 @@ $userInfoFetchAssoc = mysqli_fetch_assoc($userInfoSelectResult);
 
         </div>
         <div class="galleryButton">
-          <form method='POST' class="galleryform" enctype="multipart/form-data">
-
-            <input type="file" class='btn' name='images[]' multiple>
-            <input type="submit" class='btn' name='gallerysubmit'>
-
-          </form>
-          <?php
-
-          if (isset($_POST['gallerysubmit'])) {
-            foreach ($_FILES["images"]["error"] as $key => $error) {
-              $tmp_name = $_FILES["images"]["tmp_name"][$key];
-              $name = $_FILES["images"]["name"][$key];
-              $path = __DIR__ . '/img/';
-              move_uploaded_file($tmp_name, $path . "$name");
-              $uploadImages = "INSERT INTO `gallery` (`userId`, `image`, `description`) VALUES ('$userid', '$name', '')";
-              $conn->query($uploadImages);
-            }
-            echo "Файлы загружены";
-          }
-          ?>
+         
         </div>
       </div>
     </div>

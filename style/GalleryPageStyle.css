@@ -1,0 +1,179 @@
+.galleryContainer {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 0.05fr;
+    grid-template-rows: 0.1fr 1fr 0.05fr;
+    grid-auto-flow: row;
+    gap: 10px;
+    grid-template-areas:
+        "menu menu menu"
+        "leftMenu gridgallery ."
+        ". . .";
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+.leftMenu {
+    display: grid;
+    grid-template-columns: 0.1fr 1fr 0.1fr;
+    grid-template-rows: 0.01fr 1fr 0.1fr;
+    min-width: 350px;
+    grid-template-areas:
+        ". . ."
+        ". widget ."
+        ". . .";
+    grid-area: leftMenu;
+    border-radius: 5px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.menu {
+    display: grid;
+    grid-area: menu;
+    border-radius: 5px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        ". logo . . .";
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.gridgallery {
+    grid-area: gridgallery;
+    display: grid;
+    font-size: 16px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 0.5fr);
+    grid-gap: 8px;
+    border-radius: 5px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.descform {
+    display: grid;
+    font-size: 16px;
+    gap: 4px;
+    padding: 5%;
+  }
+  label {
+    grid-column: 1 / 2;
+    font-weight: bold;
+  }
+  
+  input, text {
+    font-size: 13px;
+    padding: 6px 0 4px 10px;
+    border: 2px solid #f0f0f0;
+    background: white;
+    border-radius: 8px;
+  }
+  .input{
+    font-size: 13px;
+    padding: 5%;
+    border: 2px solid #f0f0f0;
+    background: white;
+    border-radius: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  input,
+  button {
+    grid-column: 2 / 3;
+  }
+  
+  .input:hover {
+    transition: all 0.2s;
+    box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+  }
+  .btn {
+  
+    outline: none;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    color: #444;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    touch-action: manipulation;
+    vertical-align: top;
+    transition: box-shadow 0.2s;
+  }
+  
+  .btn:hover {
+    transition: all 0.2s;
+    box-shadow: 0 7px 14px rgb(65 132 144 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+  }
+  
+  .btn:active {
+    background-color: #f0f0f0;
+  }
+  
+.picture1caption{
+    text-align: center;
+}
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+html, body, .galleryContainer {
+    height: 100%;
+    margin: 0;
+}
+
+/*Стили для меню*//*Стили для меню*//*Стили для меню*//*Стили для меню*//*Стили для меню*//*Стили для меню*/
+.widget {
+    grid-area: widget;
+    display: grid;
+    grid-auto-flow: row;
+    padding: 35px;
+    border: 5px solid #f1f1f1;
+    background: #fff;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    max-height: 500px;
+  }
+  .widget ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 250px;
+  }
+  .widget li {
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    line-height: 40px;
+    text-align: left;
+  }
+  .widget li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .widget a {
+    text-decoration: none;
+    color:  #616a6b;
+  }
+  .widget li:before {
+    font-family: FontAwesome;
+    font-size: 20px;
+    vertical-align:bottom;
+    color: black; 
+    margin-right: 14px;
+  }
+  .widget li:nth-child(1):before {content:"\f007";}
+  .widget li:nth-child(2):before {content:"\f075";}
+  .widget li:nth-child(3):before {content:"\f0c0";}
+  .widget li:nth-child(4):before {content:"\f1c5";}
+  .widget li:nth-child(5):before {content:"\f00d";}

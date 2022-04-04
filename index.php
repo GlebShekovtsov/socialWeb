@@ -1,4 +1,13 @@
 <?
+
+session_start();
+if(!empty($_POST['submitauth'])){
+  header('Refresh: 0');
+
+}
+if (isset($_SESSION['userid'])) {
+  header('Location: userpage.php');
+} 
 $conn = mysqli_connect("localhost", "root", "root", "socialwebdb");
 ?>
 <!DOCTYPE html>
@@ -44,8 +53,8 @@ $conn = mysqli_connect("localhost", "root", "root", "socialwebdb");
           </div>
         </div>
         <div class="mainfooter">
-
         </div>
+
       </div>
     </div>
     <div class="loginContent">
@@ -64,22 +73,23 @@ $conn = mysqli_connect("localhost", "root", "root", "socialwebdb");
               <label for="">Введите логин:</label>
               <input type="text" class="input" name="loginreg" required>
               <label for="">Введите пароль:</label>
-              <input type="text" class="input" name="passwordreg">
-              <input type="submit"  name="submitreg" class="btn" value="Зарегистрироваться" required>
+              <input type="password" class="input" name="passwordreg">
+              <input type="submit" name="submitreg" class="btn" value="Зарегистрироваться" required>
+
             </form>
-            <? 
-          if(isset($_POST['submitreg'])){
-            $login = $_POST['loginreg'];
-            $password = password_hash($_POST['passwordreg'], PASSWORD_DEFAULT);
-            $userInsertion = "INSERT INTO `user` (`login`, `password`) VALUES ('$login', '$password')";
-            if ($conn->query($userInsertion)){
-              echo "<p>" . "Регистрация прошла успешно" . "</p>";
+            <?php
+            if (isset($_POST['submitreg'])) {
+              $login = $_POST['loginreg'];
+              $password = password_hash($_POST['passwordreg'], PASSWORD_DEFAULT);
+              $userInsertion = "INSERT INTO `user` (`login`, `password`) VALUES ('$login', '$password')";
+              
+              if ($conn->query($userInsertion)) {
+                echo "<p>" . "Регистрация прошла успешно" . "</p>";
+              } else {
+                echo "<p>" . "Ошибка:" . $conn->error . "</p>";
+              }
             }
-            else{
-              echo "<p>" . "Ошибка:" . $conn->error . "</p>";
-            }
-          }
-          ?>
+            ?>
           </div>
         </div>
         <div class="welcomeFotter">
@@ -96,15 +106,37 @@ $conn = mysqli_connect("localhost", "root", "root", "socialwebdb");
             <label for="">Введите логин:</label>
             <input type="text" class="input" name="login" required>
             <label for="">Введите пароль:</label>
-            <input type="text" class="input" name="password" required>
-            <input type="submit" name="submitlogin" class="btn" value="Войти">
+            <input type="password" class="input" name="password" required>
+
+            <input type="submit" name="submitauth" class="btn" value="Войти">
           </form>
-         
+          <?php
+          if (isset($_POST["login"]) && isset($_POST["password"])) {
+            $login = $_POST["login"];
+            $auth = "SELECT * FROM `user` WHERE login='$login'";
+            $authResult = mysqli_query($conn, $auth);
+            $authAssoc = mysqli_fetch_assoc($authResult);
+            if (!empty($authAssoc)) {
+              $hash = $authAssoc['password'];
+              if (password_verify($_POST['password'], $hash)) {
+                $userid = $authAssoc['id'];
+                $userlogin = $authAssoc['login'];
+                $_SESSION["login"] = $userlogin;
+                $_SESSION["userid"] = $userid;
+
+              } else {
+                echo "<p>Пароль неверный</p>";
+              }
+            } else {
+              echo "<p>Пользователя с таким логином не существует</p>";
+            }
+          }
+          ?>
         </div>
 
       </div>
     </div>
- 
+
 
 
   </div>
