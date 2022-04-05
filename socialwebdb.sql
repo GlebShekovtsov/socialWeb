@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 05 2022 г., 02:51
+-- Время создания: Апр 05 2022 г., 17:00
 -- Версия сервера: 8.0.19
--- Версия PHP: 7.4.14
+-- Версия PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -74,8 +74,18 @@ CREATE TABLE `message` (
   `senderId` varchar(256) NOT NULL,
   `recId` varchar(256) NOT NULL,
   `text` text NOT NULL,
-  `status` varchar(256) NOT NULL
+  `status` varchar(256) NOT NULL,
+  `pm` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `message`
+--
+
+INSERT INTO `message` (`id`, `senderId`, `recId`, `text`, `status`, `pm`) VALUES
+(17, '1', '2', '123', 'Не прочитано', ''),
+(18, '1', '2', '123', 'Не прочитано', ''),
+(19, '1', '2', '123', 'Не прочитано', '');
 
 -- --------------------------------------------------------
 
@@ -179,7 +189,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `page`
