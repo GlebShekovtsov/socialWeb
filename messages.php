@@ -13,6 +13,9 @@ $friendselectresult = mysqli_query($conn, $friendselect);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/FriendPageStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <title>Сообщения</title>
 </head>
@@ -56,25 +59,22 @@ $friendselectresult = mysqli_query($conn, $friendselect);
                             <figure class='gallery__item'>
                                 <img src='img/" . $friendrow['avatar'] . "' class='gallery__img' alt=''>
                             </figure>
-                            "
+                        "
                         .
-
                         "<div class='fullname'>
                                 <h2>" . $friendrow['fullName'] . "</h2>
                             </div>
                             <div class='actionbuttons'>
-                            <form class='descform'  action='' method='POST'>" .
+                            <form class='descform'  action='messageview.php' method='GET'>" .
                         "<input type='submit' class='btn' name='checkmsg' value='Просмотреть сообщения'>" .
-                        "<input type='hidden' class='hiddenbtn' name='id' value='" . $friendrow["id"] . "'>" .
+                        "<input type='hidden' class='hiddenbtn' name='pageid' value='" . $friendrow["id"] . "'>" .
                         "<input type='hidden' class='hiddenbtn' name='userId' value='" . $friendrow["userId"] . "'>
                         </form>" .
-                        "<form class='descform'  action='' method='POST'>" .
+                        "<form class='descform'  action='messagewrite.php' method='GET'>" .
                         "<input type='submit' class='btn' name='checkmsg' value='Написать сообщение'>" .
-                        "<input type='hidden' class='hiddenbtn' name='id' value='" . $friendrow["id"] . "'>" .
+                        "<input type='hidden' class='hiddenbtn' name='pageid' value='" . $friendrow["id"] . "'>" .
                         "<input type='hidden' class='hiddenbtn' name='userId' value='" . $friendrow["userId"] . "'>
                         </form>";
-                    if (isset($_POST['checkmsg'])) {
-                    }
                 }
 
 
