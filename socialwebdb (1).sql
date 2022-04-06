@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 05 2022 г., 02:51
+-- Время создания: Апр 06 2022 г., 19:25
 -- Версия сервера: 8.0.19
--- Версия PHP: 7.4.14
+-- Версия PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,8 @@ CREATE TABLE `friend` (
 --
 
 INSERT INTO `friend` (`id`, `idUser`, `idFriend`) VALUES
-(2, '5', '2');
+(2, '5', '2'),
+(3, '6', '1');
 
 -- --------------------------------------------------------
 
@@ -76,6 +77,15 @@ CREATE TABLE `message` (
   `text` text NOT NULL,
   `status` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `message`
+--
+
+INSERT INTO `message` (`id`, `senderId`, `recId`, `text`, `status`) VALUES
+(17, '1', '2', '123', 'Прочитано'),
+(18, '1', '2', '123', 'Не прочитано'),
+(19, '1', '2', '123', 'Не прочитано');
 
 -- --------------------------------------------------------
 
@@ -167,7 +177,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `friend`
 --
 ALTER TABLE `friend`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `gallery`
@@ -179,7 +189,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблицы `page`

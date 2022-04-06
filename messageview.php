@@ -46,24 +46,37 @@ $friendpageid = $_GET['pageid'];
         <div class="content">
             <div class="messageblock">
                 <div class="messagelabel">
-
+                    <? echo "<a href='messageview.php?status=send&pageid=" . $friendpageid . " '>" . "Входящие" . "</a>"; ?>
+                    <? echo "<a href='messageview.php?status=rec&pageid=" . $friendpageid . " '>" . "Исходящие" . "</a>"; ?>
                 </div>
                 <div class="messageblockform">
                     <?php
-                    $recId = $friendpageid;
-                    $senId = $senderpageid;
-                    $messageSelect = "SELECT * FROM `message` WHERE senderId = '$senId' AND recId = '$recId'";
-                    $messageResult = mysqli_query($conn, $messageSelect);
-                    
-                    ?>
-
-                    <?php
-                    foreach ($messageResult as $messageRow) {
-
-                        echo "<p>" . $messageRow['text'] . "<a href=''>" . "[Отметить как прочитанное]" . "</a>" . "</p>";
+                    if (isset($_GET['status'])) {
+                        $status = $_GET['status'];
+                        if ($status == "send") { //Входящие
+                            $recId = $friendpageid;
+                            $senId = $senderpageid;
+                            $messageSelect = "SELECT * FROM `message` WHERE senderId = '$recId' AND recId = '$senId'";
+                            $messageResult = mysqli_query($conn, $messageSelect);
+                            foreach ($messageResult as $messageRow) {
+                                echo "<p>" . $messageRow['text'] . "<a href='messageview.php?msgid=" . $messageRow['id'] . "'>" .
+                                    "[Отметить как прочитанное]" . "</a>" . "</p>";
+                            }
+                        } else if ($status == "rec") { //Исходящие
+                            $recId = $friendpageid;
+                            $senId = $senderpageid;
+                            $messageSelect = "SELECT * FROM `message` WHERE senderId = '$senId' AND recId = '$recId'";
+                            $messageResult = mysqli_query($conn, $messageSelect);
+                            foreach ($messageResult as $messageRow) {
+                                echo "<p>" . $messageRow['text'] . " " . $messageRow['status']  . "</p>";
+                            }
+                        }
                     }
-
+                    $msgid = $_GET['msgid'];
+                    $statusUpdate = "UPDATE `message` SET status = 'Прочитано' WHERE id = '$msgid'";
+                    $conn->query($statusUpdate);
                     ?>
+
                 </div>
             </div>
         </div>

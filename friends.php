@@ -53,7 +53,7 @@ $friendselectresult = mysqli_query($conn, $friendselect);
                 <?php
                 if (isset($_POST['searchsubmit'])) {
                     $searchstring = $_POST['searchstring'];
-                    $searchInsert = "SELECT * FROM `page` WHERE city = '$searchstring'";
+                    $searchInsert = "SELECT * FROM `page` WHERE city = '$searchstring' OR fullName = '$searchstring'";
                     $searchResult = mysqli_query($conn, $searchInsert);
                     foreach ($searchResult as $friendrow) {
                         echo "
